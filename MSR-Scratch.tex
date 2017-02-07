@@ -23,7 +23,7 @@
 
 \begin{document}
 
-\title{A dataset of Scratch programs,\\Scraped, Shaped and Graded}
+\title{A dataset of Scratch programs,\\Scraped, Shaped and Scored}
 
 
 \author{
@@ -64,25 +64,44 @@ It is since then that the popularity of Scratch started increasing\footnote{Mont
 
 The goal of this paper is to present an open and timely dataset of recent Scratch programs, along with their metadata, that can facilitate quantitative research in the fields of source code analysis and computing education.
 The dataset contains 250 thousand Scratch projects, from 100 thousand different users, that were scraped from the Scratch project repository.
-It is made available as a database\footnote{{add anonymized address}} which includes, for each Scratch project, its metadata and the program data, along with project grading results from the Dr. Scratch quality assessment tool \cite{moreno_automatic_2014}.
+It is made available as a database\footnote{{add anonymized address}} which includes, for each Scratch project, its metadata and the program data, along with programming mastery scoring results from the Dr. Scratch quality assessment tool \cite{moreno_automatic_2014}.
 
 \section{Dataset Construction}
 \label{dataset}
-a description of the methodology used to gather it (preferably with the tool used to create/generate the data)
 
-The dataset that we used for this study is the one made available from~\cite{Aivaloglou_2016}. The dataset consists of 250,166 projects scraped from the Scratch project repository. Those are the projects most recently shared in the Scratch projects page\footnote{\url{https://scratch.mit.edu/explore/projects/all/}} when the web scraping program run on March 2nd 2016. The web scraping program, as well as all scraped projects in JSON format are available.\footnote{\label{repo}\url{https://github.com/TUDelftScratchLab/ScratchDataset}}
+\subsection{Data collection}
+To collect the data from the web interface of the Scratch project repository we built a scraping program.
+The web scraping program, called Kragle, starts by reading the Scratch projects page\footnote{\label{scratchpublic}\url{https://scratch.mit.edu/explore/projects/all/}} and thus obtains the project identifiers of projects that were most recently shared.
+Subsequently, Kragle retrieves the JSON code for each of the listed projects\footnote{For a given project id $x$, the program's JSON representation can be obtained via \url{https://cdn.projects.scratch.mit.edu/internalapi/project/x/get}}.
 
-In order to collect the set of Scratch projects in the dataset we built a web scraping program. The scraping program, called Kragle, starts by reading the Scratch projects page\footnote{\label{scratchpublic}\url{https://scratch.mit.edu/explore/projects/all/}} and thus obtains the project identifiers of projects that were most recently shared. Subsequently, Kragle retrieves the JSON code for each of the listed projects. 
+We ran Kragle on March 2nd 2016 for 24 hours and, during that time, it obtained the JSON code for \nPrograms projects. Out of those, we failed to parse and further analyze 2,367 projects due to technical difficulties with the JSON files.
+Kragle, as well as all scraped projects and our analysis files are available.\footnote{\label{repo}\url{https://github.com/TUDelftScratchLab/ScratchDataset}}
 
-% For a given id $x$ a Scratch programs JSON representation can be obtained via \url{https://cdn.projects.scratch.mit.edu/internalapi/project/x/get}.  Does not fit on the page nicely and might also not be needed?
+Once we obtained the Scratch projects, we parsed the JSON files according to the specification of the format\footnote{\url{http://wiki.scratch.mit.edu/wiki/Scratch_File_Format_(2.0)}}.
+This resulted in a list of used blocks per project, within the sprites and the stage of the project.
+We also cross referenced all blocks with the Scratch wiki to determine the shapes and the category of all blocks.
+For example, \texttt{When Green Flag Clicked} is a \emph{Hat block} from the \emph{Events category}.
 
-We ran Kragle on March 2nd 2016 for 24 hours and, during that time, it obtained a little over 250,000 projects. Out of the \nPrograms, we failed to parse and further analyze 2,367 projects due to technical difficulties with the JSON files. Kragle, as well as all scraped projects and our analysis files are available.\footnote{\label{repo}\url{https://github.com/TUDelftScratchLab/ScratchDataset}}
+\subsection{Calculation of programming mastery scores}
+\fenia{Description of how the mastery metrics for       
+	[Abstraction]
+	,[Parallelism]
+	,[Logic]
+	,[Synchronization]
+	,[FlowControl]
+	,[UserInteractivity]
+	,[DataRepresentation]
+	,[Mastery]
+	,[Clones]
+	,[CustomBlocks]
+	,[InstancesSprites]
+	were calculated}
 
-Once we obtained the Scratch projects, we parsed the JSON files according to the specification of the format\footnote{\url{http://wiki.scratch.mit.edu/wiki/Scratch_File_Format_(2.0)}}. This resulted in a list of used blocks per project, with the sprites and the stage of the project. We also cross referenced all blocks with the Scratch wiki to determine the shapes and the category of all blocks. For example, \texttt{When Green Flag Clicked} is a \emph{Hat block} from the \emph{Events category}.
-
-\subsection{Data analysis}
+\subsection{Importing the data}
 \label{dataAnalysis}
-All scraped project data, including the list of used blocks and parameters, were imported in a relational database. We used SQL queries, which are also made available,\footnotemark[\ref{repo}] for filtering, aggregating and extracting all statistical data required to address our three research questions. We also randomly sampled and manually inspected edge cases in the results, for example empty or overly complex projects. Data for these cases are provided as part of the dataset.\footnotemark[\ref{repo}]
+All scraped project data and metadata, including the list of used blocks and parameters, were imported in a relational database.
+We also imported the data on the shapes and the categories of the Scratch blocks.
+We then used SQL queries for normalizing the data and bringing it in its final schema, which is drawn in Figure???
 
 \section{Data Representation}
 a description of the data source
