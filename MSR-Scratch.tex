@@ -67,7 +67,22 @@ The dataset contains 250 thousand Scratch projects, from 100 thousand different 
 It is made available as a database\footnote{{add anonymized address}} which includes, for each Scratch project, its metadata and the program data, along with project grading results from the Dr. Scratch quality assessment tool \cite{moreno_automatic_2014}.
 
 \section{Dataset Construction}
+\label{dataset}
 a description of the methodology used to gather it (preferably with the tool used to create/generate the data)
+
+The dataset that we used for this study is the one made available from~\cite{Aivaloglou_2016}. The dataset consists of 250,166 projects scraped from the Scratch project repository. Those are the projects most recently shared in the Scratch projects page\footnote{\url{https://scratch.mit.edu/explore/projects/all/}} when the web scraping program run on March 2nd 2016. The web scraping program, as well as all scraped projects in JSON format are available.\footnote{\label{repo}\url{https://github.com/TUDelftScratchLab/ScratchDataset}}
+
+In order to collect the set of Scratch projects in the dataset we built a web scraping program. The scraping program, called Kragle, starts by reading the Scratch projects page\footnote{\label{scratchpublic}\url{https://scratch.mit.edu/explore/projects/all/}} and thus obtains the project identifiers of projects that were most recently shared. Subsequently, Kragle retrieves the JSON code for each of the listed projects. 
+
+% For a given id $x$ a Scratch programs JSON representation can be obtained via \url{https://cdn.projects.scratch.mit.edu/internalapi/project/x/get}.  Does not fit on the page nicely and might also not be needed?
+
+We ran Kragle on March 2nd 2016 for 24 hours and, during that time, it obtained a little over 250,000 projects. Out of the \nPrograms, we failed to parse and further analyze 2,367 projects due to technical difficulties with the JSON files. Kragle, as well as all scraped projects and our analysis files are available.\footnote{\label{repo}\url{https://github.com/TUDelftScratchLab/ScratchDataset}}
+
+Once we obtained the Scratch projects, we parsed the JSON files according to the specification of the format\footnote{\url{http://wiki.scratch.mit.edu/wiki/Scratch_File_Format_(2.0)}}. This resulted in a list of used blocks per project, with the sprites and the stage of the project. We also cross referenced all blocks with the Scratch wiki to determine the shapes and the category of all blocks. For example, \texttt{When Green Flag Clicked} is a \emph{Hat block} from the \emph{Events category}.
+
+\subsection{Data analysis}
+\label{dataAnalysis}
+All scraped project data, including the list of used blocks and parameters, were imported in a relational database. We used SQL queries, which are also made available,\footnotemark[\ref{repo}] for filtering, aggregating and extracting all statistical data required to address our three research questions. We also randomly sampled and manually inspected edge cases in the results, for example empty or overly complex projects. Data for these cases are provided as part of the dataset.\footnotemark[\ref{repo}]
 
 \section{Data Representation}
 a description of the data source
