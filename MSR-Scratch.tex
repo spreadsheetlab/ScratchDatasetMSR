@@ -3,9 +3,18 @@
 % correct bad hyphenation here
 %\hyphenation{op-tical net-works semi-conduc-tor}
 
+\usepackage{url}
 \usepackage{graphicx}
 \usepackage{dcolumn}
 \usepackage{color}
+
+\newcommand{\nPrograms}{250,163}
+\newcommand{\nAnalyzedPrograms}{247,798}
+\newcommand{\nemptyPrograms}{14,307}
+\newcommand{\nScriptPrograms}{233,491}
+\newcommand{\nLOC}{36,085,654}
+\newcommand{\nscripts}{4,049,356}
+
 
 \newcommand{\fenia}[1]{\emph{\color{blue}Fenia says: #1}}
 \newcommand{\felienne}[1]{\emph{\color{green}Felienne says: #1}}
@@ -40,11 +49,22 @@ Scratch; dataset;
 \end{IEEEkeywords}
 
 
-
  
 \section{Introduction}
-\cite{Aivaloglou_2016}
-\cite{Robles_2017}
+Scratch \cite{resnick_scratch:_2009} is a block-based programming language developed to serve as a stepping stone for children from 8 to 16 years old to the more advanced world of computer programming.
+It offers a web-based programing environment that enables creating games and interactive animations. The public repository of Scratch programs contains over 19 million projects and 16 million users.
+
+A number of works in the computing education research field attempt to assess the programming skills that novice programmers develop in the Scratch environment.
+Some utilize program data collected during specific programming courses (e.g., \cite{meerbaum-salant_learning_2010, wilson_evaluation_2012, Maloney_2008}), while others utilize the dataset made available by the Lifelong Kindergarten Group at the MIT Media Lab, which contains data for Scratch projects created until 2012 (e.g., \cite{fields_2014, yang_2015, Dasgupta_2016}).
+In addition to identifying indications of learning of programming concepts, static analysis of Scratch programs has also been performed for identifying code smells and bad programming practices within Scratch programs \cite{Meerbaum_habits_2011, Aivaloglou_2016}, and automated quality assessment tools have been proposed (e.g. Hairball \cite{boe_hairball:_2013} and Dr. Scratch \cite{moreno_automatic_2014}).
+
+While Scratch is receiving increasing interest as an introductory programming language, there is no recent dataset of Scratch programs available to the research community.
+The one made available from the MIT Media Lab concerns projects created using the previous, initial version of the Scratch application, before the introduction of the Scratch 2 web programming interface in 2013.
+It is since then that the popularity of Scratch started increasing\footnote{Monthly activity trends can be found at \url{https://scratch.mit.edu/statistics/}}.
+
+The goal of this paper is to present an open and timely dataset of recent Scratch programs, along with their metadata, that can facilitate quantitative research in the fields of source code analysis and computing education.
+The dataset contains 250 thousand Scratch projects, from 100 thousand different users, that were scraped from the Scratch project repository.
+It is made available as a database\footnote{{add anonymized address}} which includes, for each Scratch project, its metadata and the program data, along with project grading results from the Dr. Scratch quality assessment tool \cite{moreno_automatic_2014}.
 
 \section{Dataset Construction}
 a description of the methodology used to gather it (preferably with the tool used to create/generate the data)
