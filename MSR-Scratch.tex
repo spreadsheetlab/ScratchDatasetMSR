@@ -64,7 +64,7 @@ It is since then that the popularity of Scratch started increasing\footnote{Mont
 
 The goal of this paper is to present an open and timely dataset of recent Scratch programs, along with their metadata, that can facilitate quantitative research in the fields of source code analysis and computing education.
 The dataset contains 250 thousand Scratch projects, from 100 thousand different users, that were scraped from the Scratch project repository.
-It is made available as a database\footnote{{add anonymized address}} which includes, for each Scratch project, its metadata and the program data, along with programming mastery scoring results from the Dr. Scratch quality assessment tool \cite{moreno_automatic_2014}.
+It is made available as a database\footnote{{\fenia{add anonymized address, update it in repo footnote}}} which includes, for each Scratch project, its metadata and the program data, along with programming mastery scoring results from the Dr. Scratch quality assessment tool \cite{moreno_automatic_2014}.
 
 \section{Dataset Construction}
 \label{dataset}
@@ -101,11 +101,7 @@ For example, \texttt{When Green Flag Clicked} is a \emph{Hat block} from the \em
 \label{dataAnalysis}
 All scraped project data and metadata, including the list of used blocks and parameters, were imported in a relational database.
 We also imported the data on the shapes and the categories of the Scratch blocks.
-We then used SQL queries for normalizing the data and bringing it in its final schema, which is drawn in Figure???
-
-\section{Data Representation}
-a description of the data source
-a description of the storage mechanism, including a schema if applicable,
+We then used SQL queries for normalizing the data and bringing it in its final schema, described in Table \ref{tbl-dbschema}.
 
 \begin{table}[ht]
 	\centering
@@ -166,6 +162,20 @@ a description of the storage mechanism, including a schema if applicable,
 	\caption{Database schema: Tables and Attributes}
 	\label{tbl-dbschema}
 \end{table}
+
+\section{Data Representation}
+
+add example scratch project
+add some statistics
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.45\textwidth]{scratchExample}
+	\caption{Example of a Scratch program with one sprite and three scripts}
+	\label{fig-scratchExample}
+\end{figure}
+
+\fenia{Description of Dr Scratch outputs in Table: grades}
 
 \section{Using the Dataset / Enabled Research / Research Opportunities}
 a description of how the data has been used by others,
