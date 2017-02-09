@@ -107,6 +107,66 @@ We then used SQL queries for normalizing the data and bringing it in its final s
 a description of the data source
 a description of the storage mechanism, including a schema if applicable,
 
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{llp{5.4cm}}
+		\textbf{Table}& \textbf{Key} & \textbf{Attribute(Description)}\\
+		\hline
+		\textbf{\texttt{project}} & PK & \texttt{p\_id} (Scratch project ID)\\
+		&  & 							\texttt{project-name} (name given to project)\\
+		&  & 							\texttt{username} (author's Scratch 
+		username)\\
+		&  & 							\texttt{total-views} (project views number)\\
+		&  & 							\texttt{total-remixes} (project remixes number)\\
+		&  & 							\texttt{total-favorites} (total users favoriting)\\
+		&  & 							\texttt{total-loves} (total users `loving' the project)\\
+		& & 							\texttt{is-remix} (calculated column, true if project is a remix of another one)\\
+		\hline
+		\textbf{\texttt{script}} & PK & \texttt{script\_id} (auto increment)\\
+		& FK & 							\texttt{project\_id} (\scriptsize{\texttt{*\ldots1 project:p\_id}})\\
+		& & 							\texttt{sprite-type} (one of [sprite, stage, procDef])\\
+		& & 							\texttt{sprite-name} (name sprite the script is in)\\
+		& & 							\texttt{script-rank} (project-level ranking of script)\\
+		& & 							\texttt{coordinates} (x-y location of script in Scratch editor)\\
+		& & 							\texttt{total-blocks} (calculated column, number of blocks comprising the script)\\
+		\hline
+		\textbf{\texttt{procedure}} & PK,FK & \texttt{script\_id} (\scriptsize{\texttt{1\ldots1 script:script\_id}})\\
+		& & 							\texttt{proc-name} (name given to custom block)\\
+		& & 							\texttt{total-args} (number of input arguments)\\
+		\hline
+		\textbf{\texttt{block}} & PK,FK  & \texttt{script\_id} (\scriptsize{\texttt{*\ldots1 script:script\_id}})\\
+		& PK & \texttt{block-rank} (script-level ranking of block)\\
+		& FK & \texttt{block-type} (\scriptsize{\texttt{*\ldots1 blockType:b-type}})\\
+		&  & \texttt{parameter-1} (value of 1st input parameter)\\
+		&  &\vdots\\
+		&  & \texttt{parameter-24} (value of 24th input parameter)\\
+		\hline
+		\textbf{\texttt{blockType}} & PK & \texttt{b-type} (Scratch name of predefined block)\\
+		&  & \texttt{category} (Scratch block category)\\
+		&  & \texttt{shape} (One of the 8 block shapes in the Scratch interface)\\
+		&  & \texttt{is-input} (true if the block receives user input)\\
+		\hline
+		\textbf{\texttt{remix}} & PK  & \texttt{remix\_id} (\texttt{\scriptsize{project\_id}} of created project)\\
+		&  & \texttt{from-project\_id} (\texttt{\scriptsize{project\_id}} of original project)\\
+		\hline
+		\textbf{\texttt{grades}} & PK,FK & \texttt{project\_id} (\texttt{\scriptsize{1\ldots1 project:p\_id}})\\
+		& & \texttt{Abstraction} ()\\
+		& & \texttt{Parallelism} ()\\
+		& & \texttt{Logic} ()\\
+		& & \texttt{Synchronization} ()\\
+		& & \texttt{FlowControl} ()\\
+		& & \texttt{UserInteractivity} ()\\
+		& & \texttt{DataRepresentation} ()\\
+		& & \texttt{Mastery} ()\\
+		& & \texttt{Clones} ()\\
+		& & \texttt{CustomBlocks} ()\\
+		& & \texttt{InstancesSprites} ()\\
+		\hline
+	\end{tabular}
+	\caption{Database schema: Tables and Attributes}
+	\label{tbl-dbschema}
+\end{table}
+
 \section{Using the Dataset / Enabled Research / Research Opportunities}
 a description of how the data has been used by others,
 
