@@ -196,24 +196,6 @@ In table \textbf{\texttt{blockType}} we have stored the encoding of all types of
 
 \subsection{Dataset Contents}
 
-\begin{table}[]
-	\centering
-	\begin{tabular}{lr}
-		\hline
-		Projects & 250,163 \\
-		Non-empty projects & 233,491 \\
-		Remixes of other projects & 12,167 \\
-		Usernames & 109,960 \\
-		Scripts & 4,049,356 \\
-		Blocks & 36,085,654 \\
-		Custom block definitions & 209,769 \\
-		Projects analyzed by Dr. Scratch & 231,050 \\
-		\hline
-	\end{tabular}
-	\caption{Dataset contents}
-	\label{tbl-size}
-\end{table}
-
 \begin{table*}[]
 	\centering
 	\begin{tabular}{lrrrrrr}
@@ -234,6 +216,24 @@ In table \textbf{\texttt{blockType}} we have stored the encoding of all types of
 	\label{tbl-stats}
 \end{table*}
 
+\begin{table}[]
+	\centering
+	\begin{tabular}{lr}
+		\hline
+		Projects & 250,163 \\
+		Non-empty projects & 233,491 \\
+		Remixes of other projects & 12,167 \\
+		Usernames & 109,960 \\
+		Scripts & 4,049,356 \\
+		Blocks & 36,085,654 \\
+		Custom block definitions & 209,769 \\
+		Projects analyzed by Dr. Scratch & 231,050 \\
+		\hline
+	\end{tabular}
+	\caption{Dataset contents}
+	\label{tbl-size}
+\end{table}
+
 As shown in Table \ref{tbl-size}, the dataset contains the metadata of 250,163 Scratch projects and the code of 233,491 of those that are non-empty.
 The projects were created from 109,960 different users.
 Most of those, as shown in Table \ref{tbl-stats}, have created a single project.
@@ -247,14 +247,44 @@ The table also highlights the existence of surprisingly complex projects, with 5
 
 \fenia{Should we add some stats about the Dr Scratch master scores?}
 
-\section{Using the Dataset / Enabled Research / Research Opportunities}
-a description of how the data has been used by others,
+\section{Enabled Research and Dataset Extension}
+\fenia{What about our own papers utilizing the dataset? (\cite{Aivaloglou_2016} and \cite{Robles_2017}). We have to anonymize the submission, so do we add them now or add a note that we omitted them and add them to the camera ready?}
 
-\section{Extending the Dataset}
-ideas for what future research questions could be answered or what further improvements could be made to the data set
+The evaluation of block-based languages in general, and Scratch in particular, as tools for programming education is receiving significant research attention.
+A number of studies have been carried out during the last years on understanding of programming concepts and the programming practices of novice programmers in block-based environments, on the programming skills they develop, and on the quality of Scratch programs.
+
+The first research direction that this dataset can be utilized for concerns the \textit{assessment of the programming skills that novice programmers develop in the Scratch environment}.
+The dataset can be used for examining indications of learning of programming concepts and abstractions.
+Existing works in this research direction include the work by Maloney \emph{et al.} \cite{Maloney_2008}, who analyzed 536 Scratch projects created in an after-school clubhouse for blocks that relate to programming concepts including loops, conditional statements, variables, user interaction, synchronization, and random numbers, and found that within the least utilized ones are boolean operators and variables.
+Another study on the internalization of programming concepts with Scratch with 46 students was presented in \cite{meerbaum-salant_learning_2010}.
+Concepts like loops, conditional loops, message passing, initialization, variables and concurency were examined, and it was found that students had problems with the last three. In \cite{wilson_evaluation_2012}, 29 projects created by 60 students working in groups were evaluated based on a list of criteria related to programming concepts, code organization and usability design.
+
+Towards this research direction, the dataset makes the source code of the Scratch programs available for static analysis and can be used for quantitatively evaluating the application of programming concepts and abstractions through the presence of Scratch blocks of the corresponding types.
+
+Another promising research direction relates to the \textit{quality of the programming artifacts developed in the Scratch environment}.
+The dataset can be used for quality assessment, for the identification of programming smells, and for exploring indications of harmful programming habits.
+Existing works in this direction include a study in a classroom setting \cite{Meerbaum_habits_2011}, which highlighted two bad programming habits in Scratch, namely bottom-up development and extremely fine-grained programming.
+The authors connected the later to the reduced use of if-blocks and finite loops and the increased use of infinite loops.
+Related to smell detection are the Scratch automated quality analysis tools Hairball \cite{boe_hairball:_2013}, a lint-like static analysis tool for Scratch that can detect initialization problems and unmatched broadcast and receive blocks, and Dr. Scratch \cite{moreno-leon_dr._2015}, which extends Hairball to detect two bad programming habits in Scratch: not changing the default object names and duplicating scripts.
+
+This dataset will enable examining code quality and code smells on a large set of Scratch projects.
+Static analysis of the source code can also be performed for the identification of other types of smells \cite{fowler_refactoring:_1999} that might be common in the artifacts of novice programmers.
+
+Moving from the software engineering to the computing education research field, a research direction with increased data requirements concerns the \textit{learning progressions of novice programmers}.
+This includes examining the factors that support learning and improving their programming skills.
+Existing works in this area have used the dataset of Scratch programs created until 2012, before the current web-based programming environment was introduced, and described in the Introduction.
+They include the works of Dasgupta et al., who investigated how project remixing relates to the adoption of new computational thinking concepts \cite{Dasgupta_2016}, and Yang et al., who examined the learning patterns of programmers in terms of block use over their first 50 projects \cite{yang_2015}.
+
+Enabling research towards this direction requires extending the dataset with the complete set of projects for the included users, along with their creation dates.
+This would enable examining how the programming skills and mastery of the users evolved through time, possibly through remixing the projects of other users.
+An even richer extension of the dataset would be with, possibly daily, snapshots of the included projects that are still in development.
+This would enable reconstructing some project versioning information, not available from the Scratch web interface, and thus examining how the projects are developed and evolve over time.
 
 \section{Limitations}
 any limitations and/or challenges in creating or using this data set.
+
+
+
 
 \section{Conclusion}
 
