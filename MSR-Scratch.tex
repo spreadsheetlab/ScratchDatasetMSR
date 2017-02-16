@@ -168,7 +168,7 @@ We then used SQL queries for normalizing the data and bringing it in its final s
 
 \subsection{Data Representation}
 
-The projects' data are stored in a relational database. Each \textbf{\texttt{project}} is identified by its Scratch project ID, stored in field \texttt{p\_id}, while its author is identified by the \texttt{username}\footnote{Each project and author page can be accessed in the Scratch web interface at \url{https://scratch.mit.edu/projects/<p_id>} and \url{https://scratch.mit.edu/users/<username>} respectively}.
+The projects' data are stored in a relational database. Each \textbf{\texttt{project}} is identified by its Scratch project ID, stored in field \texttt{p\_id}, while its author is identified by the \texttt{username}\footnote{\label{fn-authorpage}Each project and author page can be accessed in the Scratch web interface at \url{https://scratch.mit.edu/projects/<p_id>} and \url{https://scratch.mit.edu/users/<username>} respectively}.
 If a project is a remix of another one, the original project can be found in the \textbf{\texttt{remix}} table.
 Table \textbf{\texttt{grades}} stores the Dr. Scratch results for the programming mastery metrics per project.
  
@@ -281,10 +281,17 @@ An even richer extension of the dataset would be with, possibly daily, snapshots
 This would enable reconstructing some project versioning information, not available from the Scratch web interface, and thus examining how the projects are developed and evolve over time.
 
 \section{Limitations}
-any limitations and/or challenges in creating or using this data set.
+The only information about the authors of the Scratch projects contained in the dataset is their username.
+This suffices for creating project portfolios of the authors and facilitating research in the directions described in the previous section.
+However, other directions in the computing education research field require richer author data, and especially data on their gender and their age.
+There are, for example, indications that specific programming concepts are better understood after certain ages ---Seiter and Foreman \cite{Seiter_2013} analyzed 150 Scratch projects from primary school students and found that design patterns requiring the understanding of parallelization, conditionals and, especially, variables were under-represented by all grades apart from 5 an 6.
+The effect of gender and account age were also examined in \cite{fields_2014} in relation to the use of programming concepts.
+Studies on the effect of parameters like the age are not only interesting but also of direct value to educators, since they give insights on when it is better to introduce computational thinking concepts in the curriculum of schools.
+However, this dataset does not include information on the gender and the age of authors and cannot be extended to do so using the current Scratch web interface because this information is not available in the user profile page\footnotemark[\ref{fn-authorpage}], even though it is provided by the users upon registration.
 
-
-
+Another limitation of this dataset is that we did not scrape a random sample of Scratch projects, but the 250,000 most recent ones during the time that we run the scraper.
+It could be the case that the programming habits of Scratch users are changing over time.
+However, we counterbalanced that by collecting a large dataset which comprises around 1.3\% of all 19 million shared Scratch projects, and is still the most recent one to be made available to the research community.
 
 \section{Conclusion}
 
