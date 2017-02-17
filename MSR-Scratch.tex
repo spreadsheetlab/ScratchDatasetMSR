@@ -50,7 +50,7 @@ The dataset can be used for empirical research in software engineering and compu
  
 \section{Introduction}
 Scratch~\cite{resnick_scratch:_2009} is a block-based programming language developed to serve as a stepping stone for children from 8 to 16 years old to the more advanced world of computer programming.
-It offers a web-based programing environment that enables creating games and interactive animations. The public repository of Scratch programs contains over 19 million projects and 16 million users.
+It offers a web-based programming environment that enables creating games and interactive animations. The public repository of Scratch programs contains over 19 million projects and 16 million users.
 
 A number of works in the computing education research field attempt to assess the programming skills that novice programmers develop in the Scratch environment.
 Some utilize program data collected during specific programming courses (e.g.,~\cite{meerbaum-salant_learning_2010, wilson_evaluation_2012, Maloney_2008}), while others utilize the dataset made available by the Lifelong Kindergarten Group at the MIT Media Lab~\cite{2017_scratch_dataset}, which contains data for Scratch projects created until 2012 (e.g.,~\cite{fields_2014, yang_2015, Dasgupta_2016}).
@@ -95,7 +95,7 @@ We included blocks from Scratch extensions, such as the LEGO WeDo extensions, th
 %	,[CustomBlocks]
 %	,[InstancesSprites]
 %	were calculated}
-The projects were analyzed with Dr. Scratch, a tool that statically inspects Scratch projects source code to assign scores on seven dimensions of computational thinking: abstraction and problem decomposition, logical thinking, synchronization, parallelism, algorithmic notions of flow control, user interactivity and data representation. These dimensions are given a value from 0 to 3. The mastery score is the aggregated punctuation of these dimensions, and therefore ranges from 0 to 21.
+The projects were analyzed with Dr. Scratch, a tool that statically inspects Scratch projects source code to assign scores on seven dimensions of computational thinking: abstraction and problem decomposition, logical thinking, synchronization, parallelism, algorithmic notions of flow control, user interactivity and data representation. These dimensions are given a value from 0 to 3. The mastery score is the aggregated punctuation of the seven dimensions, and therefore ranges from 0 to 21.
 
 Dr. Scratch also detects: intra-project software cloning, i.e., repetition of code; the use of custom blocks, which is the way functionality can be reused in Scratch programs; and the use of instances of sprites, a feature labeled in Scratch as clone creation. These values are included in the dataset.
 
@@ -270,7 +270,7 @@ As shown in Table \ref{tbl-size}, the dataset contains the metadata of 250,163 S
 The projects were created by 109,960 different users.
 Most of the users, as shown in Table~\ref{tbl-stats}, have created a single project.
 However, 40,000 users have created more than one and up to 868 projects in the dataset.
-Not all the projects were successfully analyzed with Dr. Scratch. This is due to problems with non-official extension blocks and with some non-ascii characters in sprites names.
+Not all the projects were successfully analyzed with Dr. Scratch. This is due to problems with non-official extension blocks and with some non-ASCII characters in sprites names.
 
 The majority of the projects have been viewed only once, and they have not been favorited or remixed.
 Around 10,000 of the total projects have been remixed at least once, while the dataset includes cases of very popular projects with more than 100 remixes and even one thousand cases with more than 100 views. 
@@ -286,9 +286,9 @@ A number of studies have been carried out during the last years on understanding
 
 The first research direction that this dataset can be utilized for concerns the \textit{assessment of the programming skills that novice programmers develop in the Scratch environment}.
 The dataset can be used for examining indications of learning of programming concepts and abstractions.
-Existing works in this research direction include the work by Maloney \emph{et al.}~\cite{Maloney_2008}, who analyzed 536 Scratch projects created in an after-school clubhouse for blocks that relate to programming concepts including loops, conditional statements, variables, user interaction, synchronization, and random numbers, and found that within the least utilized ones are boolean operators and variables.
+Existing works in this research direction include the work by Maloney \emph{et al.}~\cite{Maloney_2008}, who analyzed 536 Scratch projects created in an after-school clubhouse for blocks that relate to programming concepts including loops, conditional statements, variables, user interaction, synchronization, and random numbers, and found that within the least utilized ones are Boolean operators and variables.
 Another study on the internalization of programming concepts with Scratch with 46 students was presented in~\cite{meerbaum-salant_learning_2010}.
-Concepts like loops, conditional loops, message passing, initialization, variables and concurency were examined, and it was found that students had problems with the last three. In~\cite{wilson_evaluation_2012}, 29 projects created by 60 students working in groups were evaluated based on a list of criteria related to programming concepts, code organization and usability design.
+Concepts like loops, conditional loops, message passing, initialization, variables and concurrency were examined, and it was found that students had problems with the last three. In~\cite{wilson_evaluation_2012}, 29 projects created by 60 students working in groups were evaluated based on a list of criteria related to programming concepts, code organization and usability design.
 
 Towards this research direction, the dataset makes the source code of the Scratch programs available for static analysis and can be used for quantitatively evaluating the application of programming concepts and abstractions through the presence of Scratch blocks of the corresponding types.
 
@@ -319,7 +319,7 @@ This queryable dataset can support finding example programs with characteristics
 The only information about the authors of the Scratch projects contained in the dataset is their username.
 This suffices for creating project portfolios of the authors and facilitating research in the directions described in the previous section.
 However, other directions in the computing education research field require richer author data, and especially data on their gender and age.
-There are, for example, indications that specific programming concepts are better understood after certain ages ---Seiter and Foreman~\cite{Seiter_2013} analyzed 150 Scratch projects from primary school students and found that design patterns requiring the understanding of parallelization, conditionals and, especially, variables were under-represented by all grades apart from 5 an 6.
+There are, for example, indications that specific programming concepts are better understood after certain ages ---Seiter and Foreman~\cite{Seiter_2013} analyzed 150 Scratch projects from primary school students and found that design patterns requiring the understanding of parallelism, conditionals and, especially, variables were under-represented by all grades apart from 5 an 6.
 The effect of gender and account age were also examined in~\cite{fields_2014} in relation to the use of programming concepts.
 %Studies on the effect of parameters like the age are not only interesting but also of direct value to educators, since they give insights on when it is better to introduce computational thinking concepts in the curriculum of schools.
 However, this dataset does not include information on the gender and the age of authors and cannot be extended to do so using the current Scratch web interface because this information is not available in the user profile page\footnotemark[\ref{fn-authorpage}], even though it is provided by users upon registration.
