@@ -19,7 +19,7 @@
 \newcommand{\fenia}[1]{\emph{\color{blue}Fenia says: #1}}
 \newcommand{\felienne}[1]{\emph{\color{green}Felienne says: #1}}
 \newcommand{\grex}[1]{\emph{\color{yellow}Gregorio says: #1}}
-\newcommand{\jemole}[1]{\emph{\color{red}Jesús says: #1}}
+\newcommand{\jemole}[1]{\emph{\color{red}Jes\'us says: #1}}
 
 \begin{document}
 
@@ -53,7 +53,7 @@ Scratch \cite{resnick_scratch:_2009} is a block-based programming language devel
 It offers a web-based programing environment that enables creating games and interactive animations. The public repository of Scratch programs contains over 19 million projects and 16 million users.
 
 A number of works in the computing education research field attempt to assess the programming skills that novice programmers develop in the Scratch environment.
-Some utilize program data collected during specific programming courses (e.g., \cite{meerbaum-salant_learning_2010, wilson_evaluation_2012, Maloney_2008}), while others utilize the dataset made available by the Lifelong Kindergarten Group at the MIT Media Lab, which contains data for Scratch projects created until 2012 (e.g., \cite{fields_2014, yang_2015, Dasgupta_2016}).
+Some utilize program data collected during specific programming courses (e.g., \cite{meerbaum-salant_learning_2010, wilson_evaluation_2012, Maloney_2008}), while others utilize the dataset made available by the Lifelong Kindergarten Group at the MIT Media Lab \jemole{perhaps we could cite the dataset itself~\cite{2017_scratch_dataset}}, which contains data for Scratch projects created until 2012 (e.g., \cite{fields_2014, yang_2015, Dasgupta_2016}).
 In addition to identifying indications of learning of programming concepts, static analysis of Scratch programs has also been performed for identifying code smells and bad programming practices within Scratch programs \cite{Meerbaum_habits_2011, Aivaloglou_2016}, and automated quality assessment tools have been proposed (e.g. Hairball \cite{boe_hairball:_2013} and Dr. Scratch \cite{moreno_automatic_2014}).
 
 While Scratch is receiving increasing interest as an introductory programming language, there is no recent dataset of Scratch programs available to the research community.
@@ -82,19 +82,22 @@ For example, \texttt{When Green Flag Clicked} is a \emph{Hat block} from the \em
 We included the blocks from Scratch extensions, such as the LEGO WeDo extensions, that we found in the dataset.
 
 \subsection{Calculation of programming mastery scores}
-\fenia{Description of how the mastery metrics for       
-	[Abstraction]
-	,[Parallelism]
-	,[Logic]
-	,[Synchronization]
-	,[FlowControl]
-	,[UserInteractivity]
-	,[DataRepresentation]
-	,[Mastery]
-	,[Clones]
-	,[CustomBlocks]
-	,[InstancesSprites]
-	were calculated}
+%\fenia{Description of how the mastery metrics for       
+%	[Abstraction]
+%	,[Parallelism]
+%	,[Logic]
+%	,[Synchronization]
+%	,[FlowControl]
+%	,[UserInteractivity]
+%	,[DataRepresentation]
+%	,[Mastery]
+%	,[Clones]
+%	,[CustomBlocks]
+%	,[InstancesSprites]
+%	were calculated}
+The projects were analyzed with Dr. Scratch, a tool that statically inspects Scratch projects source code to assign scores on seven dimensions of computational thinking: abstraction and problem decomposition, logical thinking, synchronization, parallelism, algorithmic notions of flow control, user interactivity and data representation. These dimensions are given a value from 0 to 3. The mastery score is the aggregated punctuation of these dimensions, and therefore ranges from 0 to 21.
+
+In addition, Dr. Scratch also detects intra-project software cloning, i.e. repetition of code; the use of custom blocks, which is the way functionality can be reused in Scratch programs; and the use of instances of sprites, a feature labeled in Scratch as clone creation. In consequence, these values are also included in the dataset.
 
 \subsection{Importing the data}
 \label{dataAnalysis}
@@ -145,17 +148,17 @@ We then used SQL queries for normalizing the data and bringing it in its final s
 		&  & \texttt{from-project\_id} (\texttt{\scriptsize{project\_id}} of original project)\\
 		\hline
 		\textbf{\texttt{grades}} & PK,FK & \texttt{project\_id} (\texttt{\scriptsize{1\ldots1 project:p\_id}})\\
-		& & \texttt{Abstraction} (\fenia{short descriptions})\\
-		& & \texttt{Parallelism} ()\\
-		& & \texttt{Logic} ()\\
-		& & \texttt{Synchronization} ()\\
-		& & \texttt{FlowControl} ()\\
-		& & \texttt{UserInteractivity} ()\\
-		& & \texttt{DataRepresentation} ()\\
-		& & \texttt{Mastery} ()\\
-		& & \texttt{Clones} ()\\
-		& & \texttt{CustomBlocks} ()\\
-		& & \texttt{InstancesSprites} ()\\
+		& & \texttt{Abstraction} (Dr. Scratch score for abstraction and problem decomposition)\\
+		& & \texttt{Parallelism} (Dr. Scratch score for parallelism)\\
+		& & \texttt{Logic} (Dr. Scratch score for logical thinking)\\
+		& & \texttt{Synchronization} (Dr. Scratch score for synchronization)\\
+		& & \texttt{FlowControl} (Dr. Scratch score for algorithmic notions of flow control)\\
+		& & \texttt{UserInteractivity} (Dr. Scratch score for user interactivity)\\
+		& & \texttt{DataRepresentation} (Dr. Scratch score for data representation)\\
+		& & \texttt{Mastery} (Dr. Scratch total mastery score)\\
+		& & \texttt{Clones} (Number of software clones)\\
+		& & \texttt{CustomBlocks} (Number of user defined blocks)\\
+		& & \texttt{InstancesSprites} (True if project makes use of Scratch clones)\\
 		\hline
 	\end{tabular}
 	\caption{Database schema: Tables and Attributes}
@@ -244,6 +247,7 @@ Table \ref{tbl-stats} also reveals the median project in the dataset: it contain
 The table also highlights the existence of surprisingly complex projects, with 525 sprites, 3 thousand scripts as 34 thousand blocks.
 
 \fenia{Should we add some stats about the Dr Scratch master scores?}
+\jemole{I don't know if we have space for this, but here it goes a proposal: As shown in Table~\ref{tbl-size}, not all the projects were successfully analyzed with Dr. Scratch. This is due to problems with non-official extension blocks and with some non-ascii characters in sprites names. Of those correctly assessed projects, as depicted in Table~\ref{tbl-stats}, the mastery score of the median project is 8, which is considered a medium level of development of computational thinking skills.}
 
 \section{Enabled Research and Dataset Extension}
 \fenia{What about our own papers utilizing the dataset? (\cite{Aivaloglou_2016} and \cite{Robles_2017}). We have to anonymize the submission, so do we add them now or add a note that we omitted them and add them to the camera ready?}
