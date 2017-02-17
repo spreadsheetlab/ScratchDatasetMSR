@@ -68,7 +68,7 @@ It is since then that the popularity of Scratch started increasing\footnote{Mont
 
 The goal of this paper is to present an open and timely dataset of recent Scratch programs, along with their metadata, that can facilitate quantitative research in the fields of source code analysis and computing education.
 The dataset contains 250 thousand Scratch projects, from more than 100 thousand different users, that were scraped from the Scratch project repository.
-It is made available as a database\footnote{{\fenia{add anonymized address, update it in repo footnote}}} which includes, for each Scratch project, its metadata and the program data, along with programming mastery scoring results from the Dr. Scratch quality assessment tool \cite{moreno_automatic_2014}.
+It is made available as a database\footnote{\label{dataseturl}The temporary location of the dataset, for the purpose of the review, is \url{https://github.com/scratchmsrds/scratchmrsds}} which includes, for each Scratch project, its metadata and the program data, along with programming mastery scoring results from the Dr. Scratch quality assessment tool \cite{moreno_automatic_2014}.
 
 \section{Dataset Construction}
 \label{dataset}
@@ -79,7 +79,7 @@ The web scraping program, called Kragle, starts by reading the Scratch projects 
 Subsequently, Kragle retrieves the JSON code for each of the listed projects\footnote{For a given project id $x$, the program's JSON representation can be obtained via \url{https://cdn.projects.scratch.mit.edu/internalapi/project/x/get}}.
 
 We ran Kragle on March 2nd 2016 for 24 hours and, during that time, it obtained the JSON code for \nPrograms projects. Out of those, we failed to parse and further analyze 2,367 projects due to technical difficulties with the JSON files.
-Kragle, as well as all scraped projects and our analysis files are available.\footnote{\label{repo}\url{https://github.com/TUDelftScratchLab/ScratchDataset}}
+Kragle, as well as all scraped projects and our analysis files are available.\footnotemark[\ref{dataseturl}]
 
 Once we obtained the Scratch projects, we parsed the JSON files according to the specification of the format\footnote{\url{http://wiki.scratch.mit.edu/wiki/Scratch_File_Format_(2.0)}}.
 This resulted in a list of used blocks per project, within the sprites and the stage of the project.
@@ -307,7 +307,7 @@ This paper presented an open and timely dataset of recent Scratch programs, that
 The dataset can support various research topics, including the ones related to the assessment of the programming skills that novice programmers develop in the Scratch environment and the exploration of their learning progressions, and issues related to the quality of the programs and the identification of smells and bad programming habits.
 
 The dataset contains 250 thousand Scratch projects, from more than 100 thousand different users, that were scraped from the Scratch project repository.
-It is made available as a database\footnote{{\fenia{add anonymized address, update it in repo footnote}}} which includes the source code of the Scratch projects, their metadata, and their programming mastery scoring results.
+It is made available as a database\footnotemark[\ref{dataseturl}] which includes the source code of the Scratch projects, their metadata, and their programming mastery scoring results.
 
 \bibliographystyle{IEEEtran}
 \bibliography{IEEEabrv,ScratchDataset}
