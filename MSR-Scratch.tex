@@ -54,10 +54,10 @@ It offers a web-based programming environment that enables creating games and in
 
 A number of works in the computing education research field attempt to assess the programming skills that novice programmers develop in the Scratch environment.
 Some utilize program data collected during specific programming courses (e.g.,~\cite{meerbaum-salant_learning_2010, wilson_evaluation_2012, Maloney_2008}), while others utilize the dataset made available by the Lifelong Kindergarten Group at the MIT Media Lab~\cite{2017_scratch_dataset}, which contains data for Scratch projects created until 2012 (e.g.,~\cite{fields_2014, yang_2015, Dasgupta_2016}).
-In addition to identifying indications of learning of programming concepts, static analysis of Scratch programs has also been performed for identifying code smells and bad programming practices within Scratch programs~\cite{Meerbaum_habits_2011, Aivaloglou_2016}, and automated quality assessment tools have been proposed (e.g., Hairball~\cite{boe_hairball:_2013} and Dr. Scratch~\cite{moreno_automatic_2014}).
+In addition to identifying indications of learning of programming concepts, static analysis of Scratch programs has also been performed for identifying code smells and bad programming practices ~\cite{Meerbaum_habits_2011, Aivaloglou_2016}, and automated quality assessment tools have been proposed (e.g., Hairball~\cite{boe_hairball:_2013} and Dr. Scratch~\cite{moreno_automatic_2014}).
 
 While Scratch is receiving increasing interest as an introductory programming language, there is no recent dataset of Scratch programs available to the research community.
-The one made available from the MIT Media Lab concerns projects created using the previous, initial version of the Scratch application, before the introduction of the Scratch 2 web programming interface in 2013.
+The one made available from the MIT Media Lab concerns projects created using the previous, initial version of the Scratch application, before the introduction of the current Scratch version (Scratch 2) and of the web programming interface in 2013.
 It is since then that the popularity of Scratch started to increase\footnote{Monthly activity trends can be found at \url{https://scratch.mit.edu/statistics/}}.
 
 The goal of this paper is to present an open and timely dataset of recent Scratch programs, along with their metadata, that can facilitate quantitative research in the fields of source code analysis and computing education.
@@ -69,15 +69,15 @@ It is made available as a database\footnote{\label{dataseturl}The temporary loca
 
 \subsection{Data collection}
 To collect the data from the web interface of the Scratch project repository, we built a scraping program.
-The web scraping program, called Kragle, starts by reading the Scratch projects page\footnote{\label{scratchpublic}\url{https://scratch.mit.edu/explore/projects/all/}} and thus obtains the project identifiers of projects that were most recently shared.
-Subsequently, Kragle retrieves a JSON file for each of the listed projects\footnote{For a given project id $x$, the program's JSON representation can be obtained via \url{https://cdn.projects.scratch.mit.edu/internalapi/project/x/get}}.
+The web scraping program starts by reading the Scratch projects page\footnote{\label{scratchpublic}\url{https://scratch.mit.edu/explore/projects/all/}} and thus obtains the project identifiers of projects that were most recently shared.
+Subsequently, it retrieves a JSON file for each of the listed projects\footnote{For a given project id $x$, the program's JSON representation can be obtained via \url{https://cdn.projects.scratch.mit.edu/internalapi/project/x/get}}.
 
-We ran Kragle on March 2nd 2016 for 24 hours and, during that time, it obtained the JSON files for \nPrograms~projects. Out of those, we failed to parse and further analyze 2,367 projects due to technical difficulties with the JSON files.
-Kragle, all scraped projects and our analysis files are available\footnotemark[\ref{dataseturl}].
+We ran the scraper on March 2nd 2016 for 24 hours and, during that time, it obtained the JSON files for \nPrograms~projects. Out of those, we failed to parse and further analyze 2,367 projects due to technical difficulties with the JSON files.
+The scraper and all project files are available\footnotemark[\ref{dataseturl}].
 
 Once we obtained the Scratch projects, we parsed the JSON files according to the specification of the format\footnote{\url{http://wiki.scratch.mit.edu/wiki/Scratch_File_Format_(2.0)}}.
 This resulted in a list of used blocks per project, within the sprites and the stage of the project.
-We also cross referenced all blocks with the Scratch wiki to determine the shapes and the category of all blocks.
+We also cross referenced all blocks with the Scratch wiki to determine their shapes and category.
 For example, \texttt{When Green Flag Clicked} is a \emph{Hat block} from the \emph{Events category}.
 We included blocks from Scratch extensions, such as the LEGO WeDo extensions, that were found in the dataset.
 
@@ -95,9 +95,11 @@ We included blocks from Scratch extensions, such as the LEGO WeDo extensions, th
 %	,[CustomBlocks]
 %	,[InstancesSprites]
 %	were calculated}
-The projects were analyzed with Dr. Scratch, a tool that statically inspects Scratch projects source code to assign scores on seven dimensions of computational thinking: abstraction and problem decomposition, logical thinking, synchronization, parallelism, algorithmic notions of flow control, user interactivity and data representation. These dimensions are given a value from 0 to 3. The mastery score is the aggregated punctuation of the seven dimensions, and therefore ranges from 0 to 21.
+We analyzed the projects with Dr. Scratch, a tool that statically inspects Scratch projects' source code to assign scores on seven dimensions of computational thinking: abstraction and problem decomposition, logical thinking, synchronization, parallelism, algorithmic notions of flow control, user interactivity and data representation. These dimensions are given a value from 0 to 3. The mastery score is the aggregated punctuation of the seven dimensions, and therefore ranges from 0 to 21.
 
 Dr. Scratch also detects: intra-project software cloning, i.e., repetition of code; the use of custom blocks, which is the way functionality can be reused in Scratch programs; and the use of instances of sprites, a feature labeled in Scratch as clone creation. These values are included in the dataset.
+
+Out of the \nPrograms~projects, 231,050 were successfully analyzed with Dr. Scratch. This was due to problems with non-official extension blocks and with some non-ASCII characters in sprites names.
 
 \subsection{Importing the data}
 \label{dataAnalysis}
@@ -123,7 +125,7 @@ We then used SQL queries for normalizing the data and bringing it in its final s
 		\textbf{\texttt{script}} & PK & \texttt{script\_id} (auto increment)\\
 		& FK & 							\texttt{project\_id} (\texttt{\scriptsize{*\ldots1 project:p\_id}})\\
 		& & 							\texttt{sprite-type} ([$sprite \vert stage \vert procDef$])\\
-		& & 							\texttt{sprite-name} (name sprite the script is in)\\
+		& & 							\texttt{sprite-name} (name of sprite the script is in)\\
 		& & 							\texttt{script-rank} (project-level ranking of script)\\
 		& & 							\texttt{coordinates} (x-y location of script in Scratch editor)\\
 		& & 							\texttt{total-blocks} (calculated column, number of blocks comprising the script)\\
@@ -134,7 +136,7 @@ We then used SQL queries for normalizing the data and bringing it in its final s
 		\hline
 		\textbf{\texttt{block}} & PK,FK  & \texttt{script\_id} (\texttt{\scriptsize{*\ldots1 script:script\_id}})\\
 		& PK & \texttt{block-rank} (script-level ranking of block)\\
-		& FK & \texttt{block-type} (\texttt{\scriptsize{*\ldots1 blockType:b-type}})\\
+		&  & \texttt{block-type} (\texttt{\scriptsize{*\ldots1 blockType:b-type}})\\
 		&  & \texttt{parameter-1} (value of 1st input parameter)\\
 		&  & ... \\
 		&  & \texttt{parameter-24} (value 24th input parameter)\\
@@ -165,9 +167,9 @@ We then used SQL queries for normalizing the data and bringing it in its final s
 		& & \texttt{UserInteractivity} (Score)\\
 		& & \texttt{DataRepresentation} (Score)\\
 		& & \texttt{Mastery} (Dr. Scratch total mastery score)\\
-		& & \texttt{Clones} (\# software clones)\\
-		& & \texttt{CustomBlocks} (\# user defined blocks)\\
-		& & \texttt{InstancesSprites} (True if project uses Scratch clones)\\
+		& & \texttt{Clones} (number of software clones)\\
+		& & \texttt{CustomBlocks} (number of user defined blocks)\\
+		& & \texttt{InstancesSprites} (true if project uses Scratch clones)\\
 		\hline
 	\end{tabular}
 	\caption{Database schema: Tables and Attributes}
@@ -178,23 +180,23 @@ We then used SQL queries for normalizing the data and bringing it in its final s
 
 \subsection{Data Representation}
 
-The data of a project are stored in a relational database. Each \textbf{\texttt{project}} is identified by its Scratch project ID, stored in field \texttt{p\_id}, while its author is identified by the \texttt{username}\footnote{\label{fn-authorpage}Each project and author page can be accessed in the Scratch web interface at \url{https://scratch.mit.edu/projects/<p_id>} and \url{https://scratch.mit.edu/users/<username>} respectively}.
+The projects' data are stored in a relational database. Each \textbf{\texttt{project}} is identified by its Scratch project ID, stored in field \texttt{p\_id}, while its author is identified by the \texttt{username}\footnote{\label{fn-authorpage}Each project and author page can be accessed in the Scratch web interface at \url{https://scratch.mit.edu/projects/<p_id>} and \url{https://scratch.mit.edu/users/<username>} respectively}.
 If a project is a remix of another one, the original project can be found in the \textbf{\texttt{remix}} table.
 Table~\textbf{\texttt{grades}} stores the Dr. Scratch results for the programming mastery metrics per project.
- 
+
+The schema of the database, outlined in Table~\ref{tbl-dbschema}, reflects the structure of the Scratch programs.
+Projects contain sprites, which are entities with their own associated code.
+The code is organized into \textbf{\texttt{script}}s, i.e., groups of Scratch code blocks, each script belonging to a sprite named \texttt{sprite-name}.
+In the example in Figure~\ref{fig-scratchExample} there are 3 scripts, one initiated when the green flag is clicked, one then the sprite is clicked, and the `backflip' custom block definition.
+Those custom blocks are the equivalent of procedure definitions, with their names and arguments stored in the \textbf{\texttt{procedure}} table.
+
  \begin{figure}
  	\centering
  	\includegraphics[width=0.45\textwidth]{scratchExample}
  	\caption{Example of a Scratch program with three scripts in the same spite}
  	\label{fig-scratchExample}
  \end{figure}
-
-The schema of the database, outlined in Table~\ref{tbl-dbschema}, reflects the structure of the Scratch programs.
-Projects contain sprites, which are entities with their own associated code.
-The code is organized into \textbf{\texttt{script}}s, i.e., groups of Scratch code blocks, each script belonging a sprite named \texttt{sprite-name}.
-In the example in Figure~\ref{fig-scratchExample} there are 3 scripts, one initiated when the green flag is clicked, one then the sprite is clicked, and the `backflip' custom block definition.
-Those custom blocks are the equivalent of procedure definitions, with their names and arguments stored in the \textbf{\texttt{procedure}} table.
-
+ 
 The coding elements in the Scratch environment are the \textbf{\texttt{block}}s, which can receive input parameters.
 In the example in the figure, block `go to x:0 y:0' receives as input two numerical parameters.
 Custom clock invocations are stored in this table just like regular blocks.
@@ -202,7 +204,7 @@ To cater for the varying number of input parameters that those blocks can have, 
 The ordering of the blocks in the scripts can be retrieved using the \texttt{block-rank} field, which represents a depth-first ranking of the blocks.
 In the script of the `backflip' custom block definition in the example, the ranking of the blocks would be `define backflip', `set counter to', `+', `counter', followed by the rest of the blocks.
 The clocks can be of different shapes and categories.
-In table \textbf{\texttt{blockType}} we have stored the encoding of all types of Scratch blocks and the blocks from Scratch extensions.
+In table \textbf{\texttt{blockType}} we have stored the encoding of all types of Scratch blocks and of the blocks from Scratch extensions.
 
 \subsection{Dataset Contents}
 
@@ -259,7 +261,7 @@ In table \textbf{\texttt{blockType}} we have stored the encoding of all types of
 		Usernames & 109,960 \\
 		Scripts & 4,049,356 \\
 		Blocks & 36,085,654 \\
-		Custom block definitions & 209,769 \\
+		Custom block definitions & 204,018 \\
 		\hline
 	\end{tabular}
 	\caption{Dataset contents}
@@ -270,7 +272,6 @@ As shown in Table \ref{tbl-size}, the dataset contains the metadata of 250,163 S
 The projects were created by 109,960 different users.
 Most of the users, as shown in Table~\ref{tbl-stats}, have created a single project.
 However, 40,000 users have created more than one and up to 868 projects in the dataset.
-Not all the projects were successfully analyzed with Dr. Scratch. This is due to problems with non-official extension blocks and with some non-ASCII characters in sprites names.
 
 The majority of the projects have been viewed only once, and they have not been favorited or remixed.
 Around 10,000 of the total projects have been remixed at least once, while the dataset includes cases of very popular projects with more than 100 remixes and even one thousand cases with more than 100 views. 
