@@ -58,7 +58,8 @@ In addition to identifying indications of learning of programming concepts, stat
 
 While Scratch is receiving increasing interest as an introductory programming language, there is no recent dataset of Scratch programs available to the research community.
 The one made available from the MIT Media Lab concerns projects created using the previous, initial version of the Scratch application, before the introduction of the current Scratch version (Scratch 2) and of the web programming interface in 2013.
-It is since then that the popularity of Scratch started to increase\footnote{Monthly activity trends can be found at \url{https://scratch.mit.edu/statistics/}}. Scratch 2 introduced several features relating to important programming concepts,\footnote{The complete list of features introduced in Scratch 2 can be found at \url{https://wiki.scratch.mit.edu/wiki/Scratch\_2.0}} like custom blocks (the equivalent to procedure definitions), and therefore that dataset does not include projects utilizing those features.
+It is since then that the popularity of Scratch started to increase.\footnote{Monthly activity trends can be found at \url{https://scratch.mit.edu/statistics/}}
+Scratch 2 introduced several features relating to important programming concepts,\footnote{The complete list of features introduced in Scratch 2 can be found at \url{https://wiki.scratch.mit.edu/wiki/Scratch_2.0}} like custom blocks (the equivalent to procedure definitions), and therefore that dataset does not include projects utilizing those features.
 
 The goal of this paper is to present an open and timely dataset of recent Scratch programs, along with their metadata, that can facilitate quantitative research in the fields of source code analysis and computing education.
 The dataset contains 250,000 Scratch projects, from more than 100,000 different users, that were scraped from the Scratch project repository.
@@ -67,7 +68,7 @@ It is made available as a database\footnote{\label{dataseturl}The temporary loca
 \section{Dataset Construction}
 \label{dataset}
 
-\subsection{Data collection}
+\subsection{Data Collection}
 To collect the data from the web interface of the Scratch project repository, we built a scraping program.
 The web scraping program starts by reading the Scratch projects page\footnote{\label{scratchpublic}\url{https://scratch.mit.edu/explore/projects/all/}} and thus obtains the project identifiers of projects that were most recently shared.
 Subsequently, it retrieves a JSON file for each of the listed projects\footnote{For a given project id $x$, the program's JSON representation can be obtained via \url{https://cdn.projects.scratch.mit.edu/internalapi/project/x/get}}.
@@ -81,7 +82,7 @@ We also cross referenced all blocks with the Scratch wiki to determine their sha
 For example, \texttt{When Green Flag Clicked} is a \emph{Hat block} from the \emph{Events category}.
 We included blocks from Scratch extensions, such as the LEGO WeDo extensions, that were found in the dataset.
 
-\subsection{Calculation of programming mastery scores}
+\subsection{Calculation of Programming Mastery Scores}
 %\fenia{Description of how the mastery metrics for       
 %	[Abstraction]
 %	,[Parallelism]
@@ -101,7 +102,7 @@ Dr. Scratch also detects: intra-project software cloning, i.e., repetition of co
 
 Out of the \nPrograms~projects, 231,050 were successfully analyzed with Dr. Scratch. This was due to problems with non-official extension blocks and with some non-ASCII characters in sprites names.
 
-\subsection{Importing the data}
+\subsection{Importing the Data}
 \label{dataAnalysis}
 All scraped project data and metadata, including the list of used blocks and parameters, were imported in a relational database.
 We also imported the data on the shapes and the categories of the Scratch blocks.
