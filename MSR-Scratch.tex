@@ -58,7 +58,7 @@ In addition to identifying indications of learning of programming concepts, stat
 
 While Scratch is receiving increasing interest as an introductory programming language, there is no recent dataset of Scratch programs available to the research community.
 The one made available from the MIT Media Lab concerns projects created using the previous, initial version of the Scratch application, before the introduction of the current Scratch version (Scratch 2) and of the web programming interface in 2013.
-It is since then that the popularity of Scratch started to increase\footnote{Monthly activity trends can be found at \url{https://scratch.mit.edu/statistics/}}.
+It is since then that the popularity of Scratch started to increase\footnote{Monthly activity trends can be found at \url{https://scratch.mit.edu/statistics/}}. Scratch 2 introduced several features relating to important programming concepts,\footnote{The complete list of features introduced in Scratch 2 can be found at \url{https://wiki.scratch.mit.edu/wiki/Scratch\_2.0}} like custom blocks (the equivalent to procedure definitions), and therefore that dataset does not include projects utilizing those features.
 
 The goal of this paper is to present an open and timely dataset of recent Scratch programs, along with their metadata, that can facilitate quantitative research in the fields of source code analysis and computing education.
 The dataset contains 250,000 Scratch projects, from more than 100,000 different users, that were scraped from the Scratch project repository.
@@ -283,13 +283,12 @@ Table~\ref{tbl-stats} also reveals the median project in the dataset: it contain
 %\fenia{What about our own papers utilizing the dataset? (\cite{Aivaloglou_2016} and \cite{Robles_2017}). We have to anonymize the submission, so do we add them now or add a note that we omitted them and add them to the camera ready?}
 
 The evaluation of block-based languages in general, and Scratch in particular, as tools for programming education is receiving significant research attention.
-A number of studies have been carried out during the last years on understanding of programming concepts and the programming practices of novice programmers in block-based environments, on the programming skills they develop, and on the quality of Scratch programs.
+A number of studies have been carried out during the last years on understanding of the programming concepts and the programming practices of novice programmers in those environments, on the programming skills they develop, and on the quality of their programs.
 
 The first research direction that this dataset can be utilized for concerns the \textit{assessment of the programming skills that novice programmers develop in the Scratch environment}.
 The dataset can be used for examining indications of learning of programming concepts and abstractions.
-Existing works in this research direction include the work by Maloney \emph{et al.}~\cite{Maloney_2008}, who analyzed 536 Scratch projects created in an after-school clubhouse for blocks that relate to programming concepts including loops, conditional statements, variables, user interaction, synchronization, and random numbers, and found that within the least utilized ones are Boolean operators and variables.
-Another study on the internalization of programming concepts with Scratch with 46 students was presented in~\cite{meerbaum-salant_learning_2010}.
-Concepts like loops, conditional loops, message passing, initialization, variables and concurrency were examined, and it was found that students had problems with the last three. In~\cite{wilson_evaluation_2012}, 29 projects created by 60 students working in groups were evaluated based on a list of criteria related to programming concepts, code organization and usability design.
+Existing works in this research direction include the work by Maloney \emph{et al.}~\cite{Maloney_2008}, who analyzed 536 Scratch projects created in an after-school clubhouse for blocks that relate to programming concepts and found that within the least utilized ones are Boolean operators and variables.
+Another study on the internalization of programming concepts with Scratch with 46 students was presented in~\cite{meerbaum-salant_learning_2010}, where it was found that students had problems with initialization, variables and concurrency.
 
 Towards this research direction, the dataset makes the source code of the Scratch programs available for static analysis and can be used for quantitatively evaluating the application of programming concepts and abstractions through the presence of Scratch blocks of the corresponding types.
 
@@ -304,7 +303,7 @@ Static analysis of the source code can also be performed for the identification 
 
 Moving from the software engineering to the computing education research field, a research direction with increased data requirements concerns the \textit{learning progressions of novice programmers}.
 This includes examining the factors that support learning and improving their programming skills.
-Existing works in this area have used the dataset of Scratch programs created until 2012, before the current web-based programming environment was introduced, and described in the Introduction.
+Existing works in this area have used the dataset of the previous version of Scratch programs, created until 2012, and described in the Introduction.
 They include the works of Dasgupta et al., who investigated how project remixing relates to the adoption of new computational thinking concepts~\cite{Dasgupta_2016}, and Yang et al., who examined the learning patterns of programmers in terms of block use over their first 50 projects~\cite{yang_2015}.
 
 Enabling research towards this direction requires extending the dataset with the complete set of projects for the included users, along with their creation dates.
@@ -313,19 +312,19 @@ An even richer extension of the dataset would be with, possibly daily, snapshots
 This would enable reconstructing some project versioning information, not available from the Scratch web interface, and thus examining how the projects are developed and evolve over time.
 
 Apart from quantitative studies, the dataset can support the design of experiments and field studies, whose material often includes Scratch programs with specific characteristics.
-For example, in~\cite{hermans_2016} examples of Scratch programs exhibiting specific smells were used in a controlled experiment to determine how the smells affected the understanding and the modification of the programs.
+For example, in~\cite{hermans_2016} examples of Scratch programs exhibiting specific smells were used in a controlled experiment to determine how the smells affect the understanding and the modification of the programs.
 This queryable dataset can support finding example programs with characteristics according to the experiment design and the field of the study.
 
 \section{Limitations}
 The only information about the authors of the Scratch projects contained in the dataset is their username.
-This suffices for creating project portfolios of the authors and facilitating research in the directions described in the previous section.
+This suffices for creating project portfolios of the authors and for facilitating research in the directions described in the previous section.
 However, other directions in the computing education research field require richer author data, and especially data on their gender and age.
 There are, for example, indications that specific programming concepts are better understood after certain ages ---Seiter and Foreman~\cite{Seiter_2013} analyzed 150 Scratch projects from primary school students and found that design patterns requiring the understanding of parallelism, conditionals and, especially, variables were under-represented by all grades apart from 5 an 6.
 The effect of gender and account age were also examined in~\cite{fields_2014} in relation to the use of programming concepts.
 %Studies on the effect of parameters like the age are not only interesting but also of direct value to educators, since they give insights on when it is better to introduce computational thinking concepts in the curriculum of schools.
 However, this dataset does not include information on the gender and the age of authors and cannot be extended to do so using the current Scratch web interface because this information is not available in the user profile page\footnotemark[\ref{fn-authorpage}], even though it is provided by users upon registration.
 
-Another limitation of this dataset is that we did not scrape a random sample of Scratch projects, but the 250,000 most recent ones during the time that we run the scraper.
+Another limitation of this dataset is that we did not scrape a random sample of Scratch projects, but the most recent ones during the time that we run the scraper.
 It could be the case that the programming habits of Scratch users are changing over time.
 However, we counterbalanced that by collecting a large dataset which comprises around 1.3\% of all 19 million shared Scratch projects, and is the most recent one to be made available to the research community.
 Projects in the dataset are the ones that their authors shared publicly when the scraper run. The dataset contains cases of projects that are no longer publicly shared and are thus no longer accessible through the Scratch web interface.
