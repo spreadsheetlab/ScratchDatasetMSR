@@ -113,7 +113,7 @@ We then used SQL queries for normalizing the data and bringing it in its final s
 	\begin{tabular}{llp{5.4cm}}
 		\textbf{Table}& \textbf{Key} & \textbf{Attribute(Description)}\\
 		\hline
-		\textbf{\texttt{project}} & PK & \texttt{p\_id} (Scratch project ID)\\
+		\textbf{\texttt{projects}} & PK & \texttt{p\_id} (Scratch project ID)\\
 		&  & 							\texttt{project-name} (name given to project)\\
 		&  & 							\texttt{username} (author's Scratch 
 		username)\\
@@ -123,34 +123,34 @@ We then used SQL queries for normalizing the data and bringing it in its final s
 		&  & 							\texttt{total-loves} (users `loving' the project)\\
 		& & 							\texttt{is-remix} (calculated column, true if project is a remix of another one)\\
 		\hline
-		\textbf{\texttt{script}} & PK & \texttt{script\_id} (auto increment)\\
-		& FK & 							\texttt{project\_id} (\texttt{\scriptsize{*\ldots1 project:p\_id}})\\
+		\textbf{\texttt{scripts}} & PK & \texttt{script\_id} (auto increment)\\
+		& FK & 							\texttt{project\_id} (\texttt{\scriptsize{*\ldots1 projects:p\_id}})\\
 		& & 							\texttt{sprite-type} ([$sprite \vert stage \vert procDef$])\\
 		& & 							\texttt{sprite-name} (name of sprite the script is in)\\
 		& & 							\texttt{script-rank} (project-level ranking of script)\\
 		& & 							\texttt{coordinates} (x-y location of script in Scratch editor)\\
 		& & 							\texttt{total-blocks} (calculated column, number of blocks comprising the script)\\
 		\hline
-		\textbf{\texttt{procedure}} & PK,FK & \texttt{script\_id} (\texttt{\scriptsize{1\ldots1 script:script\_id}})\\
+		\textbf{\texttt{procedures}} & PK,FK & \texttt{script\_id} (\texttt{\scriptsize{1\ldots1 scripts:script\_id}})\\
 		& & 							\texttt{proc-name} (name given to custom block)\\
 		& & 							\texttt{total-args} (number of input arguments)\\
 		\hline
-		\textbf{\texttt{block}} & PK,FK  & \texttt{script\_id} (\texttt{\scriptsize{*\ldots1 script:script\_id}})\\
+		\textbf{\texttt{blocks}} & PK,FK  & \texttt{script\_id} (\texttt{\scriptsize{*\ldots1 scripts:script\_id}})\\
 		& PK & \texttt{block-rank} (script-level ranking of block)\\
-		&  & \texttt{block-type} (\texttt{\scriptsize{*\ldots1 blockType:b-type}})\\
+		&  & \texttt{block-type} (\texttt{\scriptsize{*\ldots1 blockTypes:b-type}})\\
 		&  & \texttt{parameter-1} (value of 1st input parameter)\\
 		&  & ... \\
 		&  & \texttt{parameter-24} (value 24th input parameter)\\
 		\hline
-		\textbf{\texttt{blockType}} & PK & \texttt{b-type} (Scratch name of predefined block)\\
+		\textbf{\texttt{blockTypes}} & PK & \texttt{b-type} (Scratch name of predefined block)\\
 		&  & \texttt{category} (Scratch block category)\\
 		&  & \texttt{shape} (One of 8 block shapes in Scratch)\\
 		&  & \texttt{is-input} (true if block receives user input)\\
 		\hline
-		\textbf{\texttt{remix}} & PK  & \texttt{remix\_id} (\texttt{\scriptsize{project\_id}} of created project)\\
+		\textbf{\texttt{remixes}} & PK  & \texttt{remix\_id} (\texttt{\scriptsize{project\_id}} of created project)\\
 		&  & \texttt{from-project\_id} (\texttt{\scriptsize{project\_id}} of original project)\\
 		\hline
-		\textbf{\texttt{grades}} & PK,FK & \texttt{project\_id} (\texttt{\scriptsize{1\ldots1 project:p\_id}})\\
+		\textbf{\texttt{grades}} & PK,FK & \texttt{project\_id} (\texttt{\scriptsize{1\ldots1 projects:p\_id}})\\
 % Original
 %		& & \texttt{Abstraction} (Score for abstraction and problem decomposition)\\
 %		& & \texttt{Parallelism} (Score for parallelism)\\
@@ -181,15 +181,15 @@ We then used SQL queries for normalizing the data and bringing it in its final s
 
 \subsection{Data Representation}
 
-The projects' data are stored in a relational database. Each \textbf{\texttt{project}} is identified by its Scratch project ID, stored in field \texttt{p\_id}, while its author is identified by the \texttt{username}\footnote{\label{fn-authorpage}Each project and author page can be accessed in the Scratch web interface at \url{https://scratch.mit.edu/projects/<p_id>} and \url{https://scratch.mit.edu/users/<username>} respectively}.
-If a project is a remix of another one, the original project can be found in the \textbf{\texttt{remix}} table.
+The projects' data are stored in a relational database. Each of the \textbf{\texttt{projects}} is identified by its Scratch project ID, stored in field \texttt{p\_id}, while its author is identified by the \texttt{username}\footnote{\label{fn-authorpage}Each project and author page can be accessed in the Scratch web interface at \url{https://scratch.mit.edu/projects/<p_id>} and \url{https://scratch.mit.edu/users/<username>} respectively}.
+If a project is a remix of another one, the original project can be found in the \textbf{\texttt{remixes}} table.
 Table~\textbf{\texttt{grades}} stores the Dr. Scratch results for the programming mastery metrics per project.
 
 The schema of the database, outlined in Table~\ref{tbl-dbschema}, reflects the structure of the Scratch programs.
 Projects contain sprites, which are entities with their own associated code.
-The code is organized into \textbf{\texttt{script}}s, i.e., groups of Scratch code blocks, each script belonging to a sprite named \texttt{sprite-name}.
+The code is organized into \textbf{\texttt{scripts}}, i.e., groups of Scratch code blocks, each script belonging to a sprite named \texttt{sprite-name}.
 In the example in Figure~\ref{fig-scratchExample} there are 3 scripts, one initiated when the green flag is clicked, one then the sprite is clicked, and the `backflip' custom block definition.
-Those custom blocks are the equivalent of procedure definitions, with their names and arguments stored in the \textbf{\texttt{procedure}} table.
+Those custom blocks are the equivalent of procedure definitions, with their names and arguments stored in the \textbf{\texttt{procedures}} table.
 
  \begin{figure}
  	\centering
@@ -198,14 +198,14 @@ Those custom blocks are the equivalent of procedure definitions, with their name
  	\label{fig-scratchExample}
  \end{figure}
  
-The coding elements in the Scratch environment are the \textbf{\texttt{block}}s, which can receive input parameters.
+The coding elements in the Scratch environment are the \textbf{\texttt{blocks}}, which can receive input parameters.
 In the example in the figure, block `go to x:0 y:0' receives as input two numerical parameters.
 Custom clock invocations are stored in this table just like regular blocks.
 To cater for the varying number of input parameters that those blocks can have, this table can store up to the maximum number of input parameters found in the dataset, which is 24.
 The ordering of the blocks in the scripts can be retrieved using the \texttt{block-rank} field, which represents a depth-first ranking of the blocks.
 In the script of the `backflip' custom block definition in the example, the ranking of the blocks would be `define backflip', `set counter to', `+', `counter', followed by the rest of the blocks.
 The clocks can be of different shapes and categories.
-In table \textbf{\texttt{blockType}} we have stored the encoding of all types of Scratch blocks and of the blocks from Scratch extensions.
+In table \textbf{\texttt{blockTypes}} we have stored the encoding of all types of Scratch blocks and of the blocks from Scratch extensions.
 
 \subsection{Dataset Contents}
 
