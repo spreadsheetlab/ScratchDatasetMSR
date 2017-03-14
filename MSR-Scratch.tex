@@ -25,17 +25,15 @@
 
 \title{A Dataset of Scratch Programs:\\Scraped, Shaped and Scored}
 
-
-%\author{
-%	\IEEEauthorblockN{Efthimia Aivaloglou\IEEEauthorrefmark{1}, Felienne Hermans\IEEEauthorrefmark{1}, Jes{\'u}s Moreno-Le{\'o}n\IEEEauthorrefmark{2}, and Gregorio Robles\IEEEauthorrefmark{3}}
-%	
-%	\IEEEauthorblockA{\IEEEauthorrefmark{1}Delft University of Technology, The Netherlands\\
-%			Email: \{e.aivaloglou, f.f.j.hermans\}@tudelft.nl}
-%	\IEEEauthorblockA{\IEEEauthorrefmark{2}Programamos.es \& Universidad Rey Juan Carlos, Spain\\
-%		Email: jesus.moreno@programamos.es}
-%	\IEEEauthorblockA{\IEEEauthorrefmark{3}Universidad Rey Juan Carlos, Fuenlabrada (Madrid), Spain \\
-%		Email: grex@gsyc.urjc.es}
-%}
+\author{
+	\IEEEauthorblockN{Efthimia Aivaloglou\IEEEauthorrefmark{1}, Felienne Hermans\IEEEauthorrefmark{1}, Jes{\'u}s Moreno-Le{\'o}n\IEEEauthorrefmark{2}, and Gregorio Robles\IEEEauthorrefmark{3}}
+	\IEEEauthorblockA{\IEEEauthorrefmark{1}Delft University of Technology, The Netherlands\\
+			Email: \{e.aivaloglou, f.f.j.hermans\}@tudelft.nl}
+	\IEEEauthorblockA{\IEEEauthorrefmark{2}Programamos.es \& Universidad Rey Juan Carlos, Spain\\
+		Email: jesus.moreno@programamos.es}
+	\IEEEauthorblockA{\IEEEauthorrefmark{3}Universidad Rey Juan Carlos, Fuenlabrada (Madrid), Spain \\
+		Email: grex@gsyc.urjc.es}
+}
 
 \maketitle
 
@@ -63,7 +61,7 @@ Scratch 2 introduced several features relating to important programming concepts
 
 The goal of this paper is to present an open and timely dataset of recent Scratch programs, along with their metadata, that can facilitate quantitative research in the fields of source code analysis and computing education.
 The dataset contains 250,000 Scratch projects, from more than 100,000 different users, that were scraped from the Scratch project repository.
-It is made available as a database\footnote{\label{dataseturl}The temporary location of the dataset, for the purpose of the review, is \url{https://github.com/scratchmsrds/scratchmrsds}} which includes, for each Scratch project, its metadata and the program data, along with programming mastery scoring results from the Dr. Scratch quality assessment tool~\cite{moreno_automatic_2014}.
+It is made available as a database\footnote{\label{dataseturl}\url{https://github.com/TUDelftScratchLab/ScratchDataset}} which includes, for each Scratch project, its metadata and the program data, along with programming mastery scoring results from the Dr. Scratch quality assessment tool~\cite{moreno_automatic_2014}.
 
 \section{Dataset Construction}
 \label{dataset}
@@ -281,20 +279,18 @@ Table~\ref{tbl-stats} also reveals the median project in the dataset: it contain
 
 \section{Enabled Research and Dataset Extension}
 
-%\fenia{What about our own papers utilizing the dataset? (\cite{Aivaloglou_2016} and \cite{Robles_2017}). We have to anonymize the submission, so do we add them now or add a note that we omitted them and add them to the camera ready?}
-
 The evaluation of block-based languages in general, and Scratch in particular, as tools for programming education is receiving significant research attention.
 A number of studies have been carried out during the last years on understanding of the programming concepts and the programming practices of novice programmers in those environments, on the programming skills they develop, and on the quality of their programs.
 
 The first research direction that this dataset can be utilized for concerns the \textit{assessment of the programming skills that novice programmers develop in the Scratch environment}.
-The dataset can be used for examining indications of learning of programming concepts and abstractions.
+The dataset can be used for examining indications of learning of programming concepts and abstractions, as in \cite{Aivaloglou_2016}.  
 Existing works in this research direction include the work by Maloney \emph{et al.}~\cite{Maloney_2008}, who analyzed 536 Scratch projects created in an after-school clubhouse for blocks that relate to programming concepts and found that within the least utilized ones are Boolean operators and variables.
 Another study on the internalization of programming concepts with Scratch with 46 students was presented in~\cite{meerbaum-salant_learning_2010}, where it was found that students had problems with initialization, variables and concurrency.
 
 Towards this research direction, the dataset makes the source code of the Scratch programs available for static analysis and can be used for quantitatively evaluating the application of programming concepts and abstractions through the presence of Scratch blocks of the corresponding types.
 
 Another promising research direction relates to the \textit{quality of the programming artifacts developed in the Scratch environment}.
-The dataset can be used for quality assessment, for the identification of programming smells~\cite{Aivaloglou_2016}, and for exploring indications of harmful programming habits~\cite{Robles_2017}.
+The dataset has already been used for quality assessment, for the identification of programming smells~\cite{Aivaloglou_2016}, and for exploring indications of harmful programming habits~\cite{Robles_2017}.
 Existing works in this direction include a study in a classroom setting~\cite{Meerbaum_habits_2011}, which highlighted two bad programming habits in Scratch, namely bottom-up development and extremely fine-grained programming.
 The authors connected the later to the reduced use of if-blocks and finite loops and the increased use of infinite loops.
 Related to smell detection are the Scratch automated quality analysis tools Hairball~\cite{boe_hairball:_2013}, a lint-like static analysis tool for Scratch that can detect initialization problems and unmatched broadcast and receive blocks, and Dr. Scratch~\cite{moreno-leon_dr._2015}, which extends Hairball to detect two bad programming habits in Scratch: not changing the default object names and duplicating scripts.
