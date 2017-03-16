@@ -28,11 +28,11 @@
 \author{
 	\IEEEauthorblockN{Efthimia Aivaloglou\IEEEauthorrefmark{1}, Felienne Hermans\IEEEauthorrefmark{1}, Jes{\'u}s Moreno-Le{\'o}n\IEEEauthorrefmark{2}, and Gregorio Robles\IEEEauthorrefmark{3}}
 	\IEEEauthorblockA{\IEEEauthorrefmark{1}Delft University of Technology, The Netherlands\\
-			Email: \{e.aivaloglou, f.f.j.hermans\}@tudelft.nl}
+			\{e.aivaloglou, f.f.j.hermans\}@tudelft.nl}
 	\IEEEauthorblockA{\IEEEauthorrefmark{2}Programamos.es \& Universidad Rey Juan Carlos, Spain\\
-		Email: jesus.moreno@programamos.es}
+		jesus.moreno@programamos.es}
 	\IEEEauthorblockA{\IEEEauthorrefmark{3}Universidad Rey Juan Carlos, Fuenlabrada (Madrid), Spain \\
-		Email: grex@gsyc.urjc.es}
+		grex@gsyc.urjc.es}
 }
 
 \maketitle
@@ -52,12 +52,12 @@ It offers a web-based programming environment that enables creating games and in
 
 A number of works in the computing education research field attempt to assess the programming skills that novice programmers develop in the Scratch environment.
 Some utilize program data collected during specific programming courses (e.g.,~\cite{meerbaum-salant_learning_2010, wilson_evaluation_2012, Maloney_2008}), while others utilize the dataset made available by the Lifelong Kindergarten Group at the MIT Media Lab~\cite{2017_scratch_dataset}, which contains data for Scratch projects created until 2012 (e.g.,~\cite{fields_2014, yang_2015, Dasgupta_2016}).
-In addition to identifying indications of learning of programming concepts, static analysis of Scratch programs has also been performed for identifying code smells and bad programming practices ~\cite{Meerbaum_habits_2011, Aivaloglou_2016}, and automated quality assessment tools have been proposed (e.g., Hairball~\cite{boe_hairball:_2013} and Dr. Scratch~\cite{moreno_automatic_2014}).
+In addition to identifying indications of learning of programming concepts, static analysis of Scratch programs has also been performed for identifying code smells and bad programming practices (e.g.,~\cite{Meerbaum_habits_2011, Aivaloglou_2016}), and automated quality assessment tools have been proposed (e.g., Hairball~\cite{boe_hairball:_2013} and Dr. Scratch~\cite{moreno_automatic_2014}).
 
 While Scratch is receiving increasing interest as an introductory programming language, there is no recent dataset of Scratch programs available to the research community.
 The one made available from the MIT Media Lab concerns projects created using the previous, initial version of the Scratch application, before the introduction of the current Scratch version (Scratch 2) and of the web programming interface in 2013.
-It is since then that the popularity of Scratch started to increase.\footnote{Monthly activity trends can be found at \url{https://scratch.mit.edu/statistics/}}
-Scratch 2 introduced several features relating to important programming concepts,\footnote{The complete list of features introduced in Scratch 2 can be found at \url{https://wiki.scratch.mit.edu/wiki/Scratch_2.0}} like custom blocks (the equivalent to procedure definitions), and therefore that dataset does not include projects utilizing those features.
+It is since then that the popularity of Scratch started to increase\footnote{Monthly activity trends can be found at \url{https://scratch.mit.edu/statistics/}}.
+Scratch 2 introduced several features relating to important programming concepts\footnote{The complete list of features introduced in Scratch 2 can be found at \url{https://wiki.scratch.mit.edu/wiki/Scratch_2.0}}, like custom blocks (the equivalent to procedure definitions), and therefore that dataset does not include projects utilizing those features.
 
 The goal of this paper is to present an open and timely dataset of recent Scratch programs, along with their metadata, that can facilitate quantitative research in the fields of source code analysis and computing education.
 The dataset contains 250,000 Scratch projects, from more than 100,000 different users, that were scraped from the Scratch project repository.
@@ -71,7 +71,7 @@ To collect the data from the web interface of the Scratch project repository, we
 The web scraping program starts by reading the Scratch projects page\footnote{\label{scratchpublic}\url{https://scratch.mit.edu/explore/projects/all/}} and thus obtains the project identifiers of projects that were most recently shared.
 Subsequently, it retrieves a JSON file for each of the listed projects\footnote{For a given project id $x$, the program's JSON representation can be obtained via \url{https://cdn.projects.scratch.mit.edu/internalapi/project/x/get}}.
 
-We ran the scraper on March 2nd 2016 for 24 hours and, during that time, it obtained the JSON files for \nPrograms~projects. Out of those, we failed to parse and further analyze 2,367 projects due to technical difficulties with the JSON files.
+We ran the scraper on March 2\textsuperscript{nd} 2016 for 24 hours and, during that time, it obtained the JSON files for \nPrograms~projects. Out of those, we failed to parse and further analyze 2,367 projects due to technical difficulties with the JSON files.
 The scraper and all project files are available\footnotemark[\ref{dataseturl}].
 
 Once we obtained the Scratch projects, we parsed the JSON files according to the specification of the format\footnote{\url{http://wiki.scratch.mit.edu/wiki/Scratch_File_Format_(2.0)}}.
@@ -136,9 +136,9 @@ We then used SQL queries for normalizing the data and bringing it in its final s
 		\textbf{\texttt{blocks}} & PK,FK  & \texttt{script\_id} (\texttt{\scriptsize{*\ldots1 scripts:script\_id}})\\
 		& PK & \texttt{block-rank} (script-level ranking of block)\\
 		&  & \texttt{block-type} (\texttt{\scriptsize{*\ldots1 blockTypes:b-type}})\\
-		&  & \texttt{parameter-1} (value of 1st input parameter)\\
+		&  & \texttt{parameter-1} (value of 1\textsuperscript{st} input parameter)\\
 		&  & ... \\
-		&  & \texttt{parameter-24} (value 24th input parameter)\\
+		&  & \texttt{parameter-24} (value 24\textsuperscript{th} input parameter)\\
 		\hline
 		\textbf{\texttt{blockTypes}} & PK & \texttt{b-type} (Scratch name of predefined block)\\
 		&  & \texttt{category} (Scratch block category)\\
@@ -186,7 +186,7 @@ Table~\textbf{\texttt{grades}} stores the Dr. Scratch results for the programmin
 The schema of the database, outlined in Table~\ref{tbl-dbschema}, reflects the structure of the Scratch programs.
 Projects contain sprites, which are entities with their own associated code.
 The code is organized into \textbf{\texttt{scripts}}, i.e., groups of Scratch code blocks, each script belonging to a sprite named \texttt{sprite-name}.
-In the example in Figure~\ref{fig-scratchExample} there are 3 scripts, one initiated when the green flag is clicked, one then the sprite is clicked, and the `backflip' custom block definition.
+In the example in Figure~\ref{fig-scratchExample} there are three scripts, one initiated when the green flag is clicked, one then the sprite is clicked, and the `backflip' custom block definition.
 Those custom blocks are the equivalent of procedure definitions, with their names and arguments stored in the \textbf{\texttt{procedures}} table.
 
  \begin{figure}
@@ -275,7 +275,7 @@ However, 40,000 users have created more than one and up to 868 projects in the d
 The majority of the projects have been viewed only once, and they have not been favorited or remixed.
 Around 10,000 of the total projects have been remixed at least once, while there are cases of very popular projects with more than 100 remixes and even one thousand cases with more than 100 views. 
 
-Table~\ref{tbl-stats} also reveals the median project in the dataset: it contains 2 sprites, 4 scripts, 26 blocks, no custom block definitions, and receives a mastery score of 8 our of 21, which is considered a medium level of computational thinking skills development. The table highlights the existence of surprisingly complex projects, with 525 sprites and over 34,000 blocks.
+Table~\ref{tbl-stats} also reveals the median project in the dataset: it contains 2 sprites, 4 scripts, 26 blocks, no custom block definitions, and receives a mastery score of 8 out of 21, which is considered a medium level of computational thinking skills development. The table highlights the existence of surprisingly complex projects, with 525 sprites and over 34,000 blocks.
 
 \section{Enabled Research and Dataset Extension}
 
@@ -309,17 +309,17 @@ An even richer extension of the dataset would be with periodical snapshots of th
 This would enable reconstructing project versioning information, not available from the Scratch interface, and thus examining how the projects are developed and evolve over time.
 
 Apart from quantitative studies, the dataset can support the design of experiments and field studies, whose material often includes Scratch programs with specific characteristics.
-For example, in~\cite{hermans_2016} examples of Scratch programs exhibiting specific smells were used in a controlled experiment to determine how the smells affect the understanding and the modification of the programs.
+For example, examples of Scratch programs exhibiting specific smells have been used in a controlled experiment to determine how the smells affect the understanding and the modification of the programs~\cite{hermans_2016}.
 This queryable dataset can support finding example programs with characteristics according to the experiment design and the field of the study.
 
 \section{Limitations}
 The only information about the authors of the Scratch projects contained in the dataset is their username.
 This suffices for creating project portfolios of the authors and for facilitating research in the directions described in the previous section.
 However, other directions in the computing education research field require richer author data, and especially data on their gender and age.
-There are, for example, indications that specific programming concepts are better understood after certain ages ---Seiter and Foreman~\cite{Seiter_2013} analyzed 150 Scratch projects from primary school students and found that design patterns requiring the understanding of parallelism, conditionals and, especially, variables were under-represented by all grades apart from 5 an 6.
+There are, for example, indications that specific programming concepts are better understood after certain ages ---Seiter and Foreman~\cite{Seiter_2013} analyzed 150 Scratch projects from primary school students and found that design patterns requiring the understanding of parallelism, conditionals and, especially, variables were under-represented by all grades apart from 5\textsuperscript{th} and 6\textsuperscript{th}.
 The effect of gender and account age were also examined in~\cite{fields_2014} in relation to the use of programming concepts.
 %Studies on the effect of parameters like the age are not only interesting but also of direct value to educators, since they give insights on when it is better to introduce computational thinking concepts in the curriculum of schools.
-However, this dataset does not include information on the gender and the age of authors and cannot be extended to do so using the current Scratch web interface because this information is not available in the user profile page\footnotemark[\ref{fn-authorpage}], even though it is provided by users upon registration.
+However, this dataset does not include information on the gender and the age of authors, and cannot be extended to do so using the current Scratch web interface because this information is not available in the user profile page\footnotemark[\ref{fn-authorpage}], even though it is provided by users upon registration.
 
 Another limitation of this dataset is that we did not scrape a random sample of Scratch projects, but the most recent ones during the time that we run the scraper.
 It could be the case that the programming habits of Scratch users are changing over time.
