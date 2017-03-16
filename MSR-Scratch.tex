@@ -196,8 +196,8 @@ Those custom blocks are the equivalent of procedure definitions, with their name
  	\label{fig-scratchExample}
  \end{figure}
  
-The coding elements in the Scratch environment are the \textbf{\texttt{blocks}}, which can receive input parameters.
-In the example in the figure, block `go to x:0 y:0' receives as input two numerical parameters.
+The coding elements in the Scratch environment are the \textbf{\texttt{blocks}}, which can receive input parameters, like 
+block `go to x:0 y:0' in the figure.
 Custom clock invocations are stored in this table just like regular blocks.
 To cater for the varying number of input parameters that those blocks can have, this table can store up to the maximum number of input parameters found in the dataset, which is 24.
 The ordering of the blocks in the scripts can be retrieved using the \texttt{block-rank} field, which represents a depth-first ranking of the blocks.
@@ -273,14 +273,14 @@ Most of the users, as shown in Table~\ref{tbl-stats}, have created a single proj
 However, 40,000 users have created more than one and up to 868 projects in the dataset.
 
 The majority of the projects have been viewed only once, and they have not been favorited or remixed.
-Around 10,000 of the total projects have been remixed at least once, while the dataset includes cases of very popular projects with more than 100 remixes and even one thousand cases with more than 100 views. 
+Around 10,000 of the total projects have been remixed at least once, while there are cases of very popular projects with more than 100 remixes and even one thousand cases with more than 100 views. 
 
-Table~\ref{tbl-stats} also reveals the median project in the dataset: it contains 2 sprites, 4 scripts, 26 blocks, no custom block definitions, and receives a mastery score of 8 our of 21, which is considered a medium level of development of computational thinking skills. The table highlights the existence of surprisingly complex projects, with 525 sprites, 3,000 scripts and 34,000 blocks.
+Table~\ref{tbl-stats} also reveals the median project in the dataset: it contains 2 sprites, 4 scripts, 26 blocks, no custom block definitions, and receives a mastery score of 8 our of 21, which is considered a medium level of computational thinking skills development. The table highlights the existence of surprisingly complex projects, with 525 sprites and over 34,000 blocks.
 
 \section{Enabled Research and Dataset Extension}
 
 The evaluation of block-based languages in general, and Scratch in particular, as tools for programming education is receiving significant research attention.
-A number of studies have been carried out during the last years on understanding of the programming concepts and the programming practices of novice programmers in those environments, on the programming skills they develop, and on the quality of their programs.
+A number of studies have been carried out during the last years on understanding the programming practices of learners in those environments, on the programming skills they develop, and on the quality of their programs.
 
 The first research direction that this dataset can be utilized for concerns the \textit{assessment of the programming skills that novice programmers develop in the Scratch environment}.
 The dataset can be used for examining indications of learning of programming concepts and abstractions, as in \cite{Aivaloglou_2016}.  
@@ -293,7 +293,7 @@ Another promising research direction relates to the \textit{quality of the progr
 The dataset has already been used for quality assessment, for the identification of programming smells~\cite{Aivaloglou_2016}, and for exploring indications of harmful programming habits~\cite{Robles_2017}.
 Existing works in this direction include a study in a classroom setting~\cite{Meerbaum_habits_2011}, which highlighted two bad programming habits in Scratch, namely bottom-up development and extremely fine-grained programming.
 The authors connected the later to the reduced use of if-blocks and finite loops and the increased use of infinite loops.
-Related to smell detection are the Scratch automated quality analysis tools Hairball~\cite{boe_hairball:_2013}, a lint-like static analysis tool for Scratch that can detect initialization problems and unmatched broadcast and receive blocks, and Dr. Scratch~\cite{moreno-leon_dr._2015}, which extends Hairball to detect two bad programming habits in Scratch: not changing the default object names and duplicating scripts.
+Related to smell detection are the Scratch automated quality analysis tools Hairball~\cite{boe_hairball:_2013}, a static analysis tool that can detect initialization problems and unmatched broadcast and receive blocks, and Dr. Scratch~\cite{moreno-leon_dr._2015}, which extends Hairball to detect two bad programming habits: not changing the default object names and duplicating scripts.
 
 This dataset will enable examining code quality and code smells on a large set of Scratch projects.
 Static analysis of the source code can also be performed for the identification of other types of smells~\cite{fowler_refactoring:_1999} that might be common in the artifacts of novice programmers.
@@ -303,10 +303,10 @@ This includes examining the factors that support learning and improving their pr
 Existing works in this area have used the dataset of the previous version of Scratch programs, created until 2012, and described in the Introduction.
 They include the works of Dasgupta et al., who investigated how project remixing relates to the adoption of new computational thinking concepts~\cite{Dasgupta_2016}, and Yang et al., who examined the learning patterns of programmers in terms of block use over their first 50 projects~\cite{yang_2015}.
 
-Enabling research towards this direction requires extending the dataset with the complete set of projects for the included users, along with their creation dates.
-This would enable examining how the programming skills and mastery of the users evolved through time, possibly through remixing the projects of other users.
-An even richer extension of the dataset would be with, possibly daily, snapshots of the included projects that are still in development.
-This would enable reconstructing some project versioning information, not available from the Scratch web interface, and thus examining how the projects are developed and evolve over time.
+Research towards this direction requires extending the dataset with the complete set of projects for the included users, along with their creation dates.
+This would enable examining how their programming skills and mastery evolved through time, possibly through remixing the projects of others.
+An even richer extension of the dataset would be with periodical snapshots of the included projects that are still in development.
+This would enable reconstructing project versioning information, not available from the Scratch interface, and thus examining how the projects are developed and evolve over time.
 
 Apart from quantitative studies, the dataset can support the design of experiments and field studies, whose material often includes Scratch programs with specific characteristics.
 For example, in~\cite{hermans_2016} examples of Scratch programs exhibiting specific smells were used in a controlled experiment to determine how the smells affect the understanding and the modification of the programs.
